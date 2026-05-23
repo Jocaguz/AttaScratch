@@ -19,7 +19,7 @@ const ColorParam = {
     COLOR: 'color',
     SATURATION: 'saturation',
     BRIGHTNESS: 'brightness',
-    TRANSPARENCY: 'transparency'
+    TRANSPARENCY: 'transparency' 
 };
 
 /**
