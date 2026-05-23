@@ -2152,7 +2152,7 @@ class Scratch3YourExtension {
                     this.varMensajeBle += 'WH'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
                     util.startBranch(1, true);                  
                 }else{ //segunda iteracion> If fin
-                    this.varMensajeBle += 'WHFIN'; 
+                    this.varMensajeBle += 'WHFIN';
                 }
 
         } else { // comportamiento gráfico
