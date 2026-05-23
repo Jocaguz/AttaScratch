@@ -2320,7 +2320,7 @@ class Scratch3YourExtension {
     * @param {object} util - objeto con métodos y valores varios que el motor de Scratch retorna a todas las extensiones
     */ 
 
-    AttaReconectar(args,util){
+    async AttaReconectar(args,util){
       dispositivoBLE = await navigator.bluetooth.requestDevice({
         filters: [{ services: [SERVICIO_UUID] }],
      });
