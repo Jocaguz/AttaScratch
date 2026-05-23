@@ -1800,17 +1800,22 @@ class Scratch3YourExtension {
     */ 
 
     AttaIf(args,util){
+        let unionElseIf = false;
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = -1; //Primera ejecucion del bloque   
                     if (this.varMensajeBle.slice(-5)==='EL999'){ // convierte else ... if en elseif
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        unionElseIf = true;
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
                     }
                     util.startBranch(1, true);                  
                 } else { //segunda iteracion> If fin
-                    this.varMensajeBle += 'IFFIN';
+                    if (!unionElseIf){
+                        this.varMensajeBle += 'IFFIN';
+                    }
+                    
                 }
 
         } else { // comportamiento gráfico
@@ -1889,11 +1894,13 @@ class Scratch3YourExtension {
 
 
     AttaIfElseIf(args,util){
+        let unionElseIf = false;
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = 1; //Primera ejecucion del bloque   
                     if (this.varMensajeBle.slice(-5)==='EL999'){ // convierte else ... if en elseif
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        unionElseIf = true;
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
                     }
@@ -1903,7 +1910,9 @@ class Scratch3YourExtension {
                     util.stackFrame.loopCounter = -1;
                     util.startBranch(2, true);                    
                 }else{ //tercera iteracion> If fin
-                    this.varMensajeBle += 'IFFIN';
+                    if (!unionElseIf){
+                        this.varMensajeBle += 'IFFIN';
+                    }
                 }
 
         } else { // comportamiento gráfico
@@ -1971,6 +1980,7 @@ class Scratch3YourExtension {
     */     
 
  AttaIfElseIfElse(args,util){
+    let unionElseIf = false;
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = 1; //Primera ejecucion del bloque   
@@ -1978,6 +1988,7 @@ class Scratch3YourExtension {
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        unionElseIf = true;
                     }
                     util.startBranch(1, true);
                 } else if(util.stackFrame.loopCounter === 1){ // segunda iteracion: else
@@ -1989,7 +2000,9 @@ class Scratch3YourExtension {
                     util.stackFrame.loopCounter = -1;
                     util.startBranch(3, true);                                       
                 } else { //cuarta iteracion> If fin
-                    this.varMensajeBle += 'IFFIN';
+                    if (!unionElseIf){
+                        this.varMensajeBle += 'IFFIN';
+                    }
                 }
 
         } else { // comportamiento gráfico
@@ -2058,6 +2071,7 @@ class Scratch3YourExtension {
     */ 
 
     AttaIfElse (args,util){
+        let unionElseIf = false;
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = 1; //Primera ejecucion del bloque   
@@ -2065,6 +2079,7 @@ class Scratch3YourExtension {
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        unionElseIf = true;
                     }
                     util.startBranch(1, true);
                 }else if(util.stackFrame.loopCounter === 1){ // segunda iteracion: else
@@ -2072,7 +2087,9 @@ class Scratch3YourExtension {
                     util.stackFrame.loopCounter = -1;
                     util.startBranch(2, true);                    
                 }else{ //tercera iteracion> If fin
-                    this.varMensajeBle += 'IFFIN';
+                    if (!unionElseIf){
+                        this.varMensajeBle += 'IFFIN';
+                    }
                 }                
 
         } else { // comportamiento gráfico
