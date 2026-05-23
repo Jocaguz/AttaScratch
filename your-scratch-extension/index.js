@@ -2318,7 +2318,7 @@ class Scratch3YourExtension {
 
     };
 
-    /**
+    /** 
     *  Método para el bloque que transmite los comandos mediante Bluetooth  
     * 
     * @param {object} args - argumentos declarados del bloque en GetInfo().
