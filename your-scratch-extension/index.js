@@ -1354,6 +1354,8 @@ class Scratch3YourExtension {
 
     varModoTransmision = false;
     varMensajeBle = 'ATINI'; 
+    unionElseIf = 0;
+    memoriaUnion = [];
 
     /**
      * implementation of the block with the opcode that matches this name
@@ -1800,19 +1802,22 @@ class Scratch3YourExtension {
     */ 
 
     AttaIf(args,util){
-        let unionElseIf = false;
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = -1; //Primera ejecucion del bloque   
                     if (this.varMensajeBle.slice(-5)==='EL999'){ // convierte else ... if en elseif
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
-                        unionElseIf = true;
+                        this.memoriaUnion[this.unionElseIf] = true;
+                        
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        this.memoriaUnion[this.unionElseIf] = false;
                     }
+                    this.unionElseIf++;
                     util.startBranch(1, true);                  
                 } else { //segunda iteracion> If fin
-                    if (!unionElseIf){
+                    this.unionElseIf--;
+                    if (!this.memoriaUnion[this.unionElseIf]){
                         this.varMensajeBle += 'IFFIN';
                     }
                     
@@ -1894,15 +1899,16 @@ class Scratch3YourExtension {
 
 
     AttaIfElseIf(args,util){
-        let unionElseIf = false;
+        
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = 1; //Primera ejecucion del bloque   
                     if (this.varMensajeBle.slice(-5)==='EL999'){ // convierte else ... if en elseif
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
-                        unionElseIf = true;
+                        this.memoriaUnion[this.unionElseIf] = true;
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        this.memoriaUnion[this.unionElseIf] = true;
                     }
                     util.startBranch(1, true);
                 }else if(util.stackFrame.loopCounter === 1){ // segunda iteracion: else
@@ -1910,7 +1916,8 @@ class Scratch3YourExtension {
                     util.stackFrame.loopCounter = -1;
                     util.startBranch(2, true);                    
                 }else{ //tercera iteracion> If fin
-                    if (!unionElseIf){
+                    this.unionElseIf--;
+                    if (!this.memoriaUnion[this.unionElseIf]){
                         this.varMensajeBle += 'IFFIN';
                     }
                 }
@@ -1979,17 +1986,18 @@ class Scratch3YourExtension {
     * @param {object} util - objeto con métodos y valores varios que el motor de Scratch retorna a todas las extensiones
     */     
 
- AttaIfElseIfElse(args,util){
-    let unionElseIf = false;
+ AttaIfElseIfElse(args,util){    
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = 1; //Primera ejecucion del bloque   
                     if (this.varMensajeBle.slice(-5)==='EL999'){ // convierte else ... if en elseif
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        this.memoriaUnion[this.unionElseIf] = true;
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
-                        unionElseIf = true;
-                    }
+                        this.memoriaUnion[this.unionElseIf] = false;
+                    } 
+                    this.unionElseIf++;
                     util.startBranch(1, true);
                 } else if(util.stackFrame.loopCounter === 1){ // segunda iteracion: else
                     this.varMensajeBle += 'EL0' + args.condicionSensorIzqElse + args.condicionSensorDerElse;
@@ -2000,7 +2008,8 @@ class Scratch3YourExtension {
                     util.stackFrame.loopCounter = -1;
                     util.startBranch(3, true);                                       
                 } else { //cuarta iteracion> If fin
-                    if (!unionElseIf){
+                    this.unionElseIf--;
+                    if (!this.memoriaUnion[this.unionElseIf]){
                         this.varMensajeBle += 'IFFIN';
                     }
                 }
@@ -2071,23 +2080,26 @@ class Scratch3YourExtension {
     */ 
 
     AttaIfElse (args,util){
-        let unionElseIf = false;
+        
         if (this.varModoTransmision){         
             if (typeof util.stackFrame.loopCounter === 'undefined') {
                     util.stackFrame.loopCounter = 1; //Primera ejecucion del bloque   
                     if (this.varMensajeBle.slice(-5)==='EL999'){ // convierte else ... if en elseif
                         this.varMensajeBle = this.varMensajeBle.slice(0,-5) + 'EL'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
+                        this.memoriaUnion[this.unionElseIf] = true;
                     } else {
                         this.varMensajeBle += 'IF'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
-                        unionElseIf = true;
+                        this.memoriaUnion[this.unionElseIf] = false;
                     }
+                    this.unionElseIf++;
                     util.startBranch(1, true);
                 }else if(util.stackFrame.loopCounter === 1){ // segunda iteracion: else
                     this.varMensajeBle += 'EL999';
                     util.stackFrame.loopCounter = -1;
                     util.startBranch(2, true);                    
                 }else{ //tercera iteracion> If fin
-                    if (!unionElseIf){
+                    this.unionElseIf--;
+                    if (!this.memoriaUnion[this.unionElseIf]){
                         this.varMensajeBle += 'IFFIN';
                     }
                 }                
@@ -2140,7 +2152,7 @@ class Scratch3YourExtension {
                     this.varMensajeBle += 'WH'+ '0' + args.condicionSensorIzq + args.condicionSensorDer;
                     util.startBranch(1, true);                  
                 }else{ //segunda iteracion> If fin
-                    this.varMensajeBle += 'WHFIN';
+                    this.varMensajeBle += 'WHFIN'; 
                 }
 
         } else { // comportamiento gráfico
