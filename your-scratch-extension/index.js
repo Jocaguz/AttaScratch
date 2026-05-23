@@ -2325,7 +2325,7 @@ class Scratch3YourExtension {
         filters: [{ services: [SERVICIO_UUID] }],
      });
     };
-/*  
+/*   
     AttaSimulacion(args,util){
         this.varModoTransmision= false;
         util.startBranch(1, false); //eliminar y pasar a command luego
