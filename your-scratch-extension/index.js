@@ -2070,7 +2070,7 @@ class Scratch3YourExtension {
     };
 
 
-    /**
+    /** 
     *  Método para que el AttaBot realice bifurcaciones IF-Else o concatene el comando IF###...EL999...IFFIN al string de comandos según la selección de blanco/negro
     * @param {object} args - argumentos declarados del bloque en GetInfo(). 
     *   @property {int} colorSensorIzquierdo , colorSensorDerecho - valores de color identificados como los sensores en el Sprite
