@@ -1371,7 +1371,7 @@ class Scratch3YourExtension {
         if(this.varModoTransmision){
             this.FormatearComando('AV', distancia_cm);
         }  else{
-            const steps = distancia_cm;
+            const steps = 5*distancia_cm;
             const radians = MathUtil.degToRad(90 - util.target.direction);
             const dx = steps * Math.cos(radians);
             const dy = steps * Math.sin(radians);
@@ -1390,7 +1390,7 @@ class Scratch3YourExtension {
         if(this.varModoTransmision){
             this.FormatearComando('RE', distancia_cm);
         }  else{
-            const steps = -distancia_cm;
+            const steps = -5*distancia_cm;
             const radians = MathUtil.degToRad(90 - util.target.direction);
             const dx = steps * Math.cos(radians);
             const dy = steps * Math.sin(radians);
