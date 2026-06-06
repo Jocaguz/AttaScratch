@@ -1385,7 +1385,7 @@ class Scratch3YourExtension {
     * @param {int} distancia_cm - los centimetros a moverse en físico. Se entienden como steps de Scratch (escalable)
     * @param {object}  util - objeto con métodos y valores varios que el motor de Scratch retorna a todas las extensiones
     */
-
+ 
     AttaRetroceder({distancia_cm},util){
         if(this.varModoTransmision){
             this.FormatearComando('RE', distancia_cm);
