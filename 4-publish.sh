@@ -28,11 +28,13 @@ git push origin master
 echo "Building the Scratch fork"
 ./2-build.sh
 
+git fetch origin  # descubre qué hay en GitHub
 echo "Preparing a gh-pages branch"
 DEVBRANCH=$(git rev-parse --abbrev-ref HEAD)
 if git rev-parse --verify gh-pages >/dev/null 2>&1
 then
   git checkout gh-pages
+  git pull origin gh-pages --rebase
 else
   git checkout -b gh-pages
 fi
